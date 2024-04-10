@@ -1,25 +1,24 @@
 package com.marbouh.locationdevetementstraditionnels.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.marbouh.locationdevetementstraditionnels.token.Token;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import com.marbouh.locationdevetementstraditionnels.model.Roles;
-import java.util.Collection;
-import java.util.Collections;
 
+import java.util.Collection;
+import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
+@Builder
 @Table(name = "utilisateur")
-public class Utilisateur extends AbstractEntity implements UserDetails{
+@DiscriminatorColumn(name = "type_utilisateur")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class Utilisateur extends AbstractEntity implements UserDetails {
     @Column(name = "nom")
     private String nom;
     @Column(name = "prenom")
@@ -32,45 +31,43 @@ public class Utilisateur extends AbstractEntity implements UserDetails{
     private String telephone;
     @Embedded
     private Adresse adresse;
-    private boolean actif = false;
-
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "utilisateur", cascade = CascadeType.ALL)
-    private Roles role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-    return Collections.singletonList(new SimpleGrantedAuthority("ROLE_"+this.role.getRoleName()));
+        return role.getAuthorities();
     }
 
     @Override
     public String getPassword() {
-
-    return this.motDePasse;
+        return motDePasse;
     }
 
     @Override
     public String getUsername() {
-
-    return this.email;
+        return email;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return this.actif;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return this.actif;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return this.actif;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return this.actif;
+        return true;
     }
 }

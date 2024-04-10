@@ -1,12 +1,11 @@
 package com.marbouh.locationdevetementstraditionnels.dto;
 
-import com.marbouh.locationdevetementstraditionnels.model.Roles;
+import com.marbouh.locationdevetementstraditionnels.model.Role;
 import com.marbouh.locationdevetementstraditionnels.model.Utilisateur;
 import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -18,7 +17,7 @@ public class UtilisateurDto extends Throwable {
      private String moteDePasse;
      private AdresseDto adresse;
      private String telephone;
-     private Roles role;
+     private Role role;
         public static UtilisateurDto fromEntity(Utilisateur utilisateur) {
             if (utilisateur == null) {
                 return null;

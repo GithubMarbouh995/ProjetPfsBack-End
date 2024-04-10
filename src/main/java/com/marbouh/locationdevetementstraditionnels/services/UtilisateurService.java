@@ -1,6 +1,5 @@
 package com.marbouh.locationdevetementstraditionnels.services;
 
-import com.marbouh.locationdevetementstraditionnels.dto.ChangerMotDePasseUtilisateurDto;
 import com.marbouh.locationdevetementstraditionnels.dto.UtilisateurDto;
 import com.marbouh.locationdevetementstraditionnels.model.Utilisateur;
 
@@ -18,7 +17,5 @@ public interface UtilisateurService {
 
         UtilisateurDto findByEmail(String email);
 
-        UtilisateurDto changerMotDePasse(ChangerMotDePasseUtilisateurDto dto);
 
-       public Utilisateur loadUserByUsername(String username);
 }

@@ -1,5 +1,6 @@
 package com.marbouh.locationdevetementstraditionnels.model;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -13,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
+@DiscriminatorValue("CLIENT")
 @Table(name = "client")
 public class Client extends Utilisateur {
     private boolean blacklistee;
