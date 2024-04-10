@@ -17,22 +17,20 @@ public class BoutiqueService {
         this.boutiqueRepository = boutiqueRepository;
     }
 
-    ArrayList<Boutique> findAll() {
+    public ArrayList<Boutique> findAll() {
         return new ArrayList<>(boutiqueRepository.findAll());
     }
 
-    Boutique findById(int id) {
+    public Boutique findById(int id) {
         Optional<Boutique> boutique = boutiqueRepository.findById(id);
         return boutique.orElse(null);
     }
 
-    void save(Boutique boutique) {
+    public void saveOrUpdate(Boutique boutique) {
         boutiqueRepository.save(boutique);
     }
 
-
-
-    void deleteById(int id) {
+    public void deleteById(int id) {
         boutiqueRepository.deleteById(id);
     }
 
