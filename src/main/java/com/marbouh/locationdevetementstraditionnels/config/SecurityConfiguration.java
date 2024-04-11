@@ -17,7 +17,6 @@ import static com.marbouh.locationdevetementstraditionnels.model.Role.ADMIN;
 import static com.marbouh.locationdevetementstraditionnels.model.Role.MANAGER;
 import static org.springframework.http.HttpMethod.*;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
-
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor

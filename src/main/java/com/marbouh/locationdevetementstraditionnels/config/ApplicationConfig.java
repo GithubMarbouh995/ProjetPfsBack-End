@@ -1,5 +1,4 @@
 package com.marbouh.locationdevetementstraditionnels.config;
-
 import com.marbouh.locationdevetementstraditionnels.repository.UtilisateurRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -35,8 +34,10 @@ public class ApplicationConfig {
     return authProvider;
   }
 
-
-
+  @Bean
+  public AuditorAware<Integer> auditorAware() {
+    return new ApplicationAuditAware();
+  }
   @Bean
   public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
     return config.getAuthenticationManager();
