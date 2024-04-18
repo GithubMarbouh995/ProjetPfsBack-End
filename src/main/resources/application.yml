@@ -26,3 +26,13 @@ application:
 springdoc:
   swagger-ui:
     enabled=true:
+
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        web:
+#          servlet:
+#            mvc:
+#              method:
+#                annotation=DEBUG: true

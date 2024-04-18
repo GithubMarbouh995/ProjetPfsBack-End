@@ -33,6 +33,8 @@ public class SecurityConfiguration {
             "/configuration/security",
             "/swagger-ui/**",
             "/webjars/**",
+            "/api/v1/reservation/**",
+            "/api/v1/creneau-essayage/**",
             "/swagger-ui.html"};
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;

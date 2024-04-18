@@ -18,10 +18,13 @@ import java.util.List;
 @Table(name = "client")
 public class Client extends Utilisateur {
     private boolean blacklistee;
+
     @OneToMany(mappedBy = "client")
     private List<Reservation> reservations;
+
     @OneToMany(mappedBy = "client")
     private List<Avis> avis;
+
     @OneToMany(mappedBy = "client")
     private List<Location> locations;
 

@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +16,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
+@Data
 @Table(name = "creneau_essayage")
 public class CreneauEssayage extends AbstractEntity{
       @Column(name = "date")
@@ -24,7 +26,5 @@ public class CreneauEssayage extends AbstractEntity{
       @Column(name = "heure_fin")
       private Time heureFin;
 
-      @OneToOne(mappedBy = "creneauEssayage")
-      private Reservation reservation;
 
 }
