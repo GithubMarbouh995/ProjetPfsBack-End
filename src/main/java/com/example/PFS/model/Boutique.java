@@ -2,6 +2,9 @@ package com.example.PFS.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "boutique")
 public class Boutique {
@@ -13,6 +16,17 @@ public class Boutique {
     private String adresse;
     private String telephone;
     private String email;
+    @OneToMany(mappedBy = "boutique",cascade = CascadeType.ALL)
+    private ArrayList<Avis> avis;
+
+    public List<Avis> getAvis() {
+        return avis;
+    }
+
+    public void setAvis(ArrayList<Avis> avis) {
+        this.avis = avis;
+    }
+
     @Column(name = "siteWeb")
 
     private String siteweb;
@@ -74,4 +88,5 @@ public class Boutique {
     public Long getId() {
         return id;
     }
-}
+
+    }
