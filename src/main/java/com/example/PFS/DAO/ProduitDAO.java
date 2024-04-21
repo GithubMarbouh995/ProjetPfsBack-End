@@ -6,3 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProduitDAO extends CrudRepository<Produit,Integer> {}
+

@@ -1,8 +1,10 @@
 package com.example.PFS.controller;
 
 import com.example.PFS.DAO.ProduitDAO;
+import com.example.PFS.model.CreneauDisponibilite;
 import com.example.PFS.model.Image;
 import com.example.PFS.model.Produit;
+import com.example.PFS.service.CreneauDisponibiliteService;
 import com.example.PFS.service.ProduitService;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class ProduitController {
     private ProduitService produitService;
     @Autowired
     private ProduitDAO produitDAO;
+    @Autowired
+    private CreneauDisponibiliteService creneauDisponibiliteService;
+
 
     @PostMapping(value = {"/ajouterProduit"}, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public Produit ajouterProduit(@RequestPart("produit") Produit produit, @RequestPart("image_produit")MultipartFile[] files ) {
@@ -57,5 +62,15 @@ public class ProduitController {
             images.add(image);
         }
         return images;
+    }
+
+    @GetMapping("/getProduitsDispoPourCreneau/{id_creneau}")
+    public Set<Produit> getProduitsDispoPourCreneau(@PathVariable Integer id_creneau) {
+        return produitService.getProduitsDispoPourCreneau(id_creneau);
+    }
+
+    @GetMapping("/getCreneauxPourProduit/{id_produit}")
+    public Set<CreneauDisponibilite> getCreneauxPourProduit(@PathVariable Integer id_produit) {
+        return produitService.getCreneauxPourProduit(id_produit);
     }
 }

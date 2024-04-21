@@ -1,5 +1,7 @@
 package com.example.PFS.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -18,17 +20,22 @@ public class Produit {
     @JoinTable(name="image_produit", joinColumns = {@JoinColumn (name="id_produit")} , inverseJoinColumns = {@JoinColumn ( name = "id_image")})
     private Set<Image> Images;
     private int id_boutique;
-    private int id_catalogue;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="id_catalogue")
+    @JsonBackReference
+    private Catalogue catalogue;
+    @ManyToMany(mappedBy = "produits")
+    @JsonIgnore
+    private Set<CreneauDisponibilite> creneauDisponibilites;
 
     public Produit() {}
 
-    public Produit(String nom, String description, String categorie, String prixLocation, int id_boutique, int id_catalogue) {
+    public Produit(String nom, String description, String categorie, String prixLocation, int id_boutique) {
         this.nom = nom;
         this.description = description;
         this.categorie = categorie;
         this.prixLocation = prixLocation;
         this.id_boutique = id_boutique;
-        this.id_catalogue = id_catalogue;
     }
 
     public int getId_produit() {
@@ -79,12 +86,12 @@ public class Produit {
         this.id_boutique = id_boutique;
     }
 
-    public int getId_catalogue() {
-        return id_catalogue;
+    public Catalogue getCatalogue() {
+        return catalogue;
     }
 
-    public void setId_catalogue(int id_catalogue) {
-        this.id_catalogue = id_catalogue;
+    public void setCatalogue(Catalogue catalogue) {
+        this.catalogue = catalogue;
     }
 
     public Set<Image> getImages() {
@@ -93,5 +100,13 @@ public class Produit {
 
     public void setImages(Set<Image> images) {
         Images = images;
+    }
+
+    public Set<CreneauDisponibilite> getCreneauDisponibilites() {
+        return creneauDisponibilites;
+    }
+
+    public void setCreneauDisponibilites(Set<CreneauDisponibilite> creneauDisponibilites) {
+        this.creneauDisponibilites = creneauDisponibilites;
     }
 }
