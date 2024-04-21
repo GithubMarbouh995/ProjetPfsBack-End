@@ -16,21 +16,21 @@ public class Boutique {
     private String adresse;
     private String telephone;
     private String email;
-    @OneToMany(mappedBy = "boutique",cascade = CascadeType.ALL)
-    private ArrayList<Avis> avis;
+    @OneToMany(mappedBy = "boutique",cascade = CascadeType.ALL
+    )
+    private List<Avis> avis = new ArrayList<>();
+    @Column(name = "siteWeb")
+
+    private String siteweb;
+    private String horaire;
 
     public List<Avis> getAvis() {
         return avis;
     }
 
-    public void setAvis(ArrayList<Avis> avis) {
+    public void setAvis(List<Avis> avis) {
         this.avis = avis;
     }
-
-    @Column(name = "siteWeb")
-
-    private String siteweb;
-    private String horaire;
 
     public String getNom() {
         return nom;
@@ -72,7 +72,6 @@ public class Boutique {
         this.siteweb = siteweb;
     }
 
-
     public String getHoraire() {
         return horaire;
     }
@@ -81,12 +80,12 @@ public class Boutique {
         this.horaire = horaire;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
     }
+
+}

@@ -35,11 +35,11 @@ public class LocationController {
     @PostMapping("/location/create")
     void createLocation(@RequestBody Location location) {
         location.setId(0L);
-        Boutique boutique = location.getBoutique();
-        Client client = location.getClient();
-        boutique.getLocation().add(location);
-        location.setBoutique(boutique);
-        location.setClient(client);
+//        Boutique boutique = location.getBoutique();
+//        Client client = location.getClient();
+//        boutique.getLocation().add(location);
+//        location.setBoutique(boutique);
+//        location.setClient(client);
 
         locationService.saveOrUpdate(location);
     }

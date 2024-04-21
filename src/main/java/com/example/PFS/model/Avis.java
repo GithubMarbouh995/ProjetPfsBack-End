@@ -9,15 +9,28 @@ public class Avis {
 
     private String commentaire;
     @Id
-    private Long id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
+    @Column(name = "id_avis")
+
+    private Long id;
+    @ManyToOne
+            (cascade =  CascadeType.ALL)
     @JoinColumn(name = "id_client")
 
     private Client client;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade =  CascadeType.ALL)
     @JoinColumn(name = "boutique_id")
+
     private Boutique boutique;
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
     public int getNote() {
         return note;
@@ -33,14 +46,6 @@ public class Avis {
 
     public void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
     }
 
     public Boutique getBoutique() {

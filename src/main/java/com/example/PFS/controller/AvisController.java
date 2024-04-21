@@ -2,7 +2,6 @@ package com.example.PFS.controller;
 
 import com.example.PFS.model.Avis;
 import com.example.PFS.model.Boutique;
-import com.example.PFS.model.Client;
 import com.example.PFS.service.AvisService;
 import com.example.PFS.service.BoutiqueService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +32,12 @@ public class AvisController {
 
     @PostMapping("/avis/create")
     void createAvis(@RequestBody Avis avis) {
-        avis.setId(0L);
-        Boutique boutique = avis.getBoutique();
-        Client client = avis.getClient();
-        boutique.getAvis().add(avis);
-//        client.
+
+        Boutique boutique = boutiqueService.findById(avis.getBoutique().getId().intValue());
+//        Client client = boutiqueService.findById(avis.getBoutique().getId().intValue());
         avis.setBoutique(boutique);
-        avis.setClient(client);
+        avis.getBoutique().getAvis().add(avis);
+        avis.getClient().getAvis().add(avis);
 
         avisService.saveOrUpdate(avis);
     }
