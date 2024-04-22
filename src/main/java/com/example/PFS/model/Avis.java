@@ -14,12 +14,13 @@ public class Avis {
     @Column(name = "id_avis")
 
     private Long id;
-    @ManyToOne
-            (cascade =  CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.ALL})
+
     @JoinColumn(name = "id_client")
 
     private Client client;
-    @ManyToOne(cascade ={  CascadeType.REMOVE})
+//    @ManyToOne(cascade ={CascadeType.PERSIST})
+    @ManyToOne(cascade = {})
     @JoinColumn(name = "boutique_id")
 
     private Boutique boutique;

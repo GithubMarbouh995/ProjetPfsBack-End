@@ -16,7 +16,11 @@ public class Boutique {
     private String adresse;
     private String telephone;
     private String email;
-    @OneToMany(mappedBy = "boutique",cascade = CascadeType.ALL
+    @OneToMany(mappedBy = "boutique",  fetch = FetchType.LAZY,
+            cascade = {CascadeType.ALL
+//            CascadeType.PERSIST, CascadeType.MERGE,
+//                    CascadeType.DETACH, CascadeType.REFRESH
+    }
     )
     private List<Avis> avis = new ArrayList<>();
     @Column(name = "siteWeb")

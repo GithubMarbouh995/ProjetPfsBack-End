@@ -30,25 +30,40 @@ public class AvisController {
         return avisService.findById(id);
     }
 
+    @GetMapping("/test/")
+    void test() {
+        for (Avis a : boutiqueService.findById(39).getAvis()) {
+            System.out.println(a.getCommentaire());
+        }
+    }
+
     @PostMapping("/avis/create")
     void createAvis(@RequestBody Avis avis) {
 
         Boutique boutique = boutiqueService.findById(avis.getBoutique().getId().intValue());
 
-        avisService.saveOrUpdate(avis, boutique);
+        avisService.save(avis, boutique);
     }
 
     @PutMapping("/avis/update")
     void updateAvis(@RequestBody Avis avis) {
-        Boutique boutique = boutiqueService.findById(avis.getBoutique().getId().intValue());
-        System.out.println("CHOF");
-        System.out.println(avis.getId());
-        System.out.println(avis.getCommentaire());
-        avisService.saveOrUpdate(avis, boutique);
+        try {
+            if (avis.getId() == null) {
+                throw new IllegalArgumentException("Aucun id");
+            }
+            avisService.update(avis.getId().intValue());
+
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 
     @DeleteMapping("/avis/delete")
-    void delete(@RequestBody int id) {
-        avisService.deleteById(id);
+    void delete(@RequestBody Avis avis) {
+
+        avisService.delete(avisService.findById(avis.getId().intValue()),
+                boutiqueService.findById(avis.getBoutique().getId().intValue()));
+
     }
+
 }
