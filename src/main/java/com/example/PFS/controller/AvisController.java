@@ -34,21 +34,21 @@ public class AvisController {
     void createAvis(@RequestBody Avis avis) {
 
         Boutique boutique = boutiqueService.findById(avis.getBoutique().getId().intValue());
-//        Client client = boutiqueService.findById(avis.getBoutique().getId().intValue());
-        avis.setBoutique(boutique);
-        avis.getBoutique().getAvis().add(avis);
-        avis.getClient().getAvis().add(avis);
 
-        avisService.saveOrUpdate(avis);
+        avisService.saveOrUpdate(avis, boutique);
     }
 
     @PutMapping("/avis/update")
     void updateAvis(@RequestBody Avis avis) {
-        avisService.saveOrUpdate(avis);
+        Boutique boutique = boutiqueService.findById(avis.getBoutique().getId().intValue());
+        System.out.println("CHOF");
+        System.out.println(avis.getId());
+        System.out.println(avis.getCommentaire());
+        avisService.saveOrUpdate(avis, boutique);
     }
 
-    @PostMapping("/avis/delete")
-    void delete(@RequestParam("id") int id) {
+    @DeleteMapping("/avis/delete")
+    void delete(@RequestBody int id) {
         avisService.deleteById(id);
     }
 }

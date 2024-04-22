@@ -19,7 +19,7 @@ public class Avis {
     @JoinColumn(name = "id_client")
 
     private Client client;
-    @ManyToOne(cascade =  CascadeType.ALL)
+    @ManyToOne(cascade ={  CascadeType.REMOVE})
     @JoinColumn(name = "boutique_id")
 
     private Boutique boutique;
