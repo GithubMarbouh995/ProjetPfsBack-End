@@ -1,26 +1,65 @@
 package com.marbouh.locationdevetementstraditionnels.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.Data;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "avis")
-public class Avis extends AbstractEntity{
+@Data
+public class Avis  extends AbstractEntity {
 
-    @Column(name = "note")
     private int note;
-    @Column(name = "commentaire")
-    private String commentaire;
 
-    @ManyToOne
+    private String commentaire;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+//    @Column(name = "id_avis")
+//
+//    private Long id;
+    @ManyToOne(cascade = {CascadeType.ALL})
+
+    @JoinColumn(name = "id_client")
+
     private Client client;
-    @ManyToOne
+//    @ManyToOne(cascade ={CascadeType.PERSIST})
+    @ManyToOne(cascade = {})
+    @JoinColumn(name = "boutique_id")
+
     private Boutique boutique;
+
+//    public Client getClient() {
+//        return client;
+//    }
+//
+//    public void setClient(Client client) {
+//        this.client = client;
+//    }
+//
+//    public int getNote() {
+//        return note;
+//    }
+//
+//    public void setNote(int note) {
+//        this.note = note;
+//    }
+//
+//    public String getCommentaire() {
+//        return commentaire;
+//    }
+//
+//    public void setCommentaire(String commentaire) {
+//        this.commentaire = commentaire;
+//    }
+//
+//    public Boutique getBoutique() {
+//        return boutique;
+//    }
+//
+//    public void setBoutique(Boutique boutique) {
+//        this.boutique = boutique;
+//    }
+
+
 
 }

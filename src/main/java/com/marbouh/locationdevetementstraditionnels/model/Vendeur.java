@@ -15,8 +15,8 @@ import java.util.List;
 @DiscriminatorValue("VENDEUR")
 public class Vendeur extends Utilisateur{
     private String identifiant;
-    @OneToOne (mappedBy = "vendeur")
-    private Boutique boutiques;
+    @OneToOne(mappedBy = "vendeur")
+    private Boutique boutique;
     public void ajouterBoutique(Boutique boutque ) {
 
     }
