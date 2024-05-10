@@ -35,7 +35,9 @@ public class SecurityConfiguration {
             "/webjars/**",
             "/api/v1/reservation/**",
             "/api/v1/creneau-essayage/**",
-            "/swagger-ui.html"};
+            "/swagger-ui.html",
+            "/api/v1/produit/**",
+    };
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
     private final LogoutHandler logoutHandler;

@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.marbouh.locationdevetementstraditionnels.token.TokenRepository;
 import java.io.IOException;
-
+import org.springframework.beans.factory.annotation.Value;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +26,8 @@ public class AuthenticationService {
   private final PasswordEncoder passwordEncoder;
   private final JwtService jwtService;
   private final AuthenticationManager authenticationManager;
-
+  @Value("${application.mailing.frontend.activation-url}")
+  private String activationUrl;
   public AuthenticationResponse register(RegisterRequest request) {
     var user = Utilisateur.builder()
              .nom(request.getNom())

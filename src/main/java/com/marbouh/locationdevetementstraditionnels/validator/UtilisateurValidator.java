@@ -15,8 +15,8 @@ public class UtilisateurValidator {
             errors.add("Veuillez renseigner le nom d'utilisateur");
             errors.add("Veuillez renseigner le prenom d'utilisateur");
             errors.add("Veuillez renseigner le mot de passe d'utilisateur");
-            errors.add("Veuillez renseigner l'adresse d'utilisateur");
-            errors.addAll(AdresseValidator.validate(null));
+//            errors.add("Veuillez renseigner l'adresse d'utilisateur");
+//            errors.addAll(AdresseValidator.validate(null));
             return errors;
         }
 
@@ -32,10 +32,10 @@ public class UtilisateurValidator {
         if (!StringUtils.hasLength(utilisateurDto.getMoteDePasse())) {
             errors.add("Veuillez renseigner le mot de passe d'utilisateur");
         }
-        if (utilisateurDto.getTelephone() == null) {
-            errors.add("Veuillez renseigner le telephone");
-        }
-        errors.addAll(AdresseValidator.validate(utilisateurDto.getAdresse()));
+//        if (utilisateurDto.getTelephone() == null) {
+//            errors.add("Veuillez renseigner le telephone");
+//        }
+//        errors.addAll(AdresseValidator.validate(utilisateurDto.getAdresse()));
 
         return errors;
     }

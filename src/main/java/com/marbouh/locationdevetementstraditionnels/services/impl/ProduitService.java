@@ -1,7 +1,4 @@
 package com.marbouh.locationdevetementstraditionnels.services.impl;
-
-import com.marbouh.locationdevetementstraditionnels.repository.CreneauEssayageRepository;
-import com.marbouh.locationdevetementstraditionnels.repository.ProduitRepository;
 import com.marbouh.locationdevetementstraditionnels.model.CreneauDisponibilite;
 import com.marbouh.locationdevetementstraditionnels.model.Produit;
 import com.marbouh.locationdevetementstraditionnels.repository.CreneauDisponibiliteDAO;
