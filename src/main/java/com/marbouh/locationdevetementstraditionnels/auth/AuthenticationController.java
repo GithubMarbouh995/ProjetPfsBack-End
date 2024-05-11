@@ -1,5 +1,4 @@
 package com.marbouh.locationdevetementstraditionnels.auth;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +20,11 @@ public class AuthenticationController {
       @RequestBody RegisterRequest request
   ) {
     return ResponseEntity.ok(service.register(request));
+  }
+  @GetMapping("/confirm")
+  public ResponseEntity<String> confirm(@RequestParam String token) {
+    String responseMessage = service.confirmToken(token);
+    return ResponseEntity.ok(responseMessage);
   }
   @PostMapping("/authenticate")
   public ResponseEntity<AuthenticationResponse> authenticate(
