@@ -9,6 +9,7 @@ import java.util.List;
 
 //@Controller
 @RestController
+@RequestMapping("api/boutiques")
 public class BoutiqueController {
     BoutiqueService boutiqueService;
 
@@ -17,28 +18,29 @@ public class BoutiqueController {
         this.boutiqueService = boutiqueService;
     }
 
-    @GetMapping("/boutiques")
+    @GetMapping()
     List<Boutique> getAll() {
         return boutiqueService.findAll();
     }
 
-    @GetMapping("/boutiques/")
+    @GetMapping("/{id}")
     Boutique getBoutique(@RequestParam("id") int id) {
         return boutiqueService.findById(id);
     }
 
-    @PostMapping("/boutiques/create")
+    @PostMapping()
     void createBoutique(@RequestBody Boutique boutique) {
         boutique.setId(0L);
         boutiqueService.saveOrUpdate(boutique);
     }
 
-    @PutMapping("/boutiques/update")
+    @PutMapping()
     void updateBoutique(@RequestBody Boutique boutique) {
+        System.out.println("hacho"+boutique.getId());
         boutiqueService.saveOrUpdate(boutique);
     }
 
-    @PostMapping("/boutiques/delete")
+    @DeleteMapping("/{id}")
     void delete(@RequestParam("id") int id) {
         boutiqueService.deleteById(id);
     }
