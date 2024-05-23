@@ -1,4 +1,5 @@
 package com.marbouh.locationdevetementstraditionnels.auth;
+import com.marbouh.locationdevetementstraditionnels.model.Utilisateur;
 import com.marbouh.locationdevetementstraditionnels.services.impl.UtilisateurServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -49,4 +50,9 @@ public class AuthenticationController {
   public Integer getId(@RequestParam("email") String email) {
     return utilisateurService.findId(email);
   }
+
+  @GetMapping("/{id}")
+    public Utilisateur getUtilisateur(@PathVariable("id") int id) {
+        return utilisateurService.findById(id);
+    }
 }

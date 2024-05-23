@@ -3,6 +3,7 @@ package com.marbouh.locationdevetementstraditionnels.model;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -31,11 +32,9 @@ public class Produit extends AbstractEntity {
     @ManyToMany(mappedBy = "produits")
     @JsonIgnore
     private Set<CreneauDisponibilite> creneauDisponibilites;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "produit_id")
-    private List<Location> locations;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "produit_id")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "produit")
+    private List<Location> locations= new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "produit")
     private List<Reservation> reservation;
 
 

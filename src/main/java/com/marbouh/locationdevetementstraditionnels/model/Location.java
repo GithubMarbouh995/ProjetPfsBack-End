@@ -12,9 +12,12 @@ import java.time.Instant;
 public class Location extends AbstractEntity {
     private Instant datedebut;
     private Instant datefin;
-    private String etat;
-    private int produit_id;
-    private int client_id;
+    private boolean accepted;;
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private Produit produit;
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private Client client;
+
 
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,27 +47,27 @@ public class Location extends AbstractEntity {
         this.datefin = datefin;
     }
 
-    public String getEtat() {
-        return etat;
+    public boolean isAccepted() {
+        return accepted;
     }
 
-    public void setEtat(String etat) {
-        this.etat = etat;
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
     }
 
-    public int getClient_id() {
-        return client_id;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClient_id(int client_id) {
-        this.client_id = client_id;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
-    public int getProduit_id() {
-        return produit_id;
+    public Produit getProduit() {
+        return produit;
     }
 
-    public void setProduit_id(int produit_id) {
-        this.produit_id = produit_id;
+    public void setProduit(Produit produit) {
+        this.produit = produit;
     }
 }

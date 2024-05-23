@@ -47,5 +47,8 @@ public class LocationService {
     public List<Reservation> verify_2(int produit_id, Instant datedebut, Instant datefin) {
         return locationRepository.verify_2(produit_id, datedebut, datefin);
     }
+    public List<Location> findByClientId(int id) {
+        return locationRepository.findByClientId(id);
+    }
 }
 

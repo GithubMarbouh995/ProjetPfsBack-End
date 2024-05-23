@@ -37,8 +37,8 @@ public class ReservationController {
         reservationService.saveOrUpdate(reservation);
     }
 
-    @PostMapping("/reservation/delete")
-    void delete(@RequestParam("id") int id) {
+    @DeleteMapping("/reservation/delete/{id}")
+    void delete(@PathVariable("id") int id) {
         reservationService.deleteById(id);
     }
 
@@ -55,5 +55,9 @@ public class ReservationController {
     @GetMapping("/reservation/verify_2")
     List<Location> verify_2(@RequestParam("produit_id") int produit_id, @RequestParam("date") Instant date) {
         return reservationService.verify_2(produit_id, date );
+    }
+    @GetMapping("/reservation/client/{id}")
+    List<Reservation> findByClientId(@PathVariable("id") int id) {
+        return reservationService.findByClientId(id);
     }
 }

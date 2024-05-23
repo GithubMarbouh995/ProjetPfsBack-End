@@ -38,7 +38,7 @@ public class Boutique extends AbstractEntity {
     private String siteweb;
     private String horaire;
     @OneToOne
-    @JoinColumn(name = "vendeur_id", referencedColumnName = "id")
+    @JoinColumn(name = "id")
     private Vendeur vendeur;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_boutique")
@@ -46,6 +46,18 @@ public class Boutique extends AbstractEntity {
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(name="image_boutique", joinColumns = {@JoinColumn (name="id_boutique")} , inverseJoinColumns = {@JoinColumn ( name = "id_image")})
     private Set<Image> Images;
+  public Boutique() {
+    }
+
+    public Boutique(String nom, String adresse, String telephone, String email, String siteweb, String horaire, Vendeur vendeur) {
+        this.nom = nom;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.email = email;
+        this.siteweb = siteweb;
+        this.horaire = horaire;
+        this.vendeur= vendeur;
+    }
 
 //    public List<Avis> getAvis() {
 //        return avis;

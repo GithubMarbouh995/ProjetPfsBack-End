@@ -41,6 +41,7 @@ public class SecurityConfiguration {
             "/api/boutiques/**",
             "/reservation/**",
             "/location/**",
+            "/user/**"
     };
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;

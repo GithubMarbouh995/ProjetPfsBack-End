@@ -16,16 +16,35 @@ import java.util.List;
 public class Client extends Utilisateur {
     private boolean blacklistee;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_id")
-    private List<Reservation> reservations;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy = "client")
+    private List<Location> locations;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy = "client")
+    private List<Reservation> reservation;
 
     @OneToMany(mappedBy = "client")
     private List<Avis> avis;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_id")
-    private List<Location> locations;
+    public List<Location> getLocations() {
+        return locations;
+    }
 
+    public void setLocations(List<Location> locations) {
+        this.locations = locations;
+    }
 
+    public List<Reservation> getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(List<Reservation> reservation) {
+        this.reservation = reservation;
+    }
+
+    public boolean isBlacklistee() {
+        return blacklistee;
+    }
+
+    public void setBlacklistee(boolean blacklistee) {
+        this.blacklistee = blacklistee;
+    }
 }

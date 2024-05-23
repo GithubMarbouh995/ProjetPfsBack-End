@@ -37,7 +37,7 @@ public class BoutiqueController {
     }
 
     @PostMapping(value={"/createBoutique"},consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    void createBoutique(@RequestPart Boutique boutique,@RequestPart("image_produit") MultipartFile[] files ) {
+    void createBoutique(@RequestPart("boutique") Boutique boutique,@RequestPart("image_boutique") MultipartFile[] files ) {
         try {
             Set<Image> images = uploadImage(files);
             boutique.setImages(images);

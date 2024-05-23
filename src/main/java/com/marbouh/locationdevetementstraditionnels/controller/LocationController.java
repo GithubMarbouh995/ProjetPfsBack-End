@@ -60,4 +60,8 @@ public class LocationController {
     List<Reservation> verify_2(@RequestParam("produit_id") int produit_id, @RequestParam("datedebut") Instant datedebut, @RequestParam("datefin") Instant datefin) {
         return locationService.verify_2(produit_id, datedebut, datefin);
     }
+    @GetMapping("/location/client/{id}")
+    List<Location> findByClientId(@PathVariable("id") int id) {
+        return locationService.findByClientId(id);
+    }
 }

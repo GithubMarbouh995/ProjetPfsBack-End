@@ -104,6 +104,18 @@ if (id == null) {
       return utilisateurRepository.findIdByEmail(email);
     }
 
+    public Utilisateur findById(int id){
+        return utilisateurRepository.findbyId(id);
+    }
+
+    public Utilisateur update(Utilisateur utilisateur){
+        if (utilisateur == null) {
+            log.error("Utilisateur is null");
+            return null;
+        }
+        return utilisateurRepository.save(utilisateur);
+    }
+
 
 
 }

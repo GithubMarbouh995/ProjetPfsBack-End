@@ -17,16 +17,20 @@ import java.time.Instant;
 @Table(name = "reservation")
 public class Reservation extends AbstractEntity{
     private Instant date;
-    private int produit_id;
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private Produit produit;
     private boolean accepted;
-    private int client_id;
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private Client client;
     @ManyToOne(cascade = CascadeType.ALL)
     private CreneauEssayage creneauEssayage;
 
-    public Reservation(Instant date, int produit_id, String client_id, boolean accepted) {
+
+    public Reservation(Instant date, Produit produit, Client client, boolean accepted) {
         this.date = date;
-        this.produit_id = produit_id;
+        this.produit=produit;
         this.accepted = accepted;
+        this.client = client;
     }
 
     public Instant getDate() {
@@ -37,20 +41,12 @@ public class Reservation extends AbstractEntity{
         this.date = date;
     }
 
-    public int getProduit_id() {
-        return produit_id;
+    public Client getClient() {
+        return client;
     }
 
-    public void setProduit_id(int produit_id) {
-        this.produit_id = produit_id;
-    }
-
-    public int getClient_id() {
-        return client_id;
-    }
-
-    public void setClient_id(int client_id) {
-        this.client_id = client_id;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public boolean isAccepted() {
@@ -61,5 +57,11 @@ public class Reservation extends AbstractEntity{
         this.accepted = accepted;
     }
 
+    public Produit getProduit() {
+        return produit;
+    }
 
+    public void setProduit(Produit produit) {
+        this.produit = produit;
+    }
 }

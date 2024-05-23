@@ -53,8 +53,11 @@ public Reservation findById(int id) {
         return reservationRepository.findByProduitAndPeriod(produit_id, date);
     }
     public List<Location> verify_2(int produit_id, Instant date) {
-
         return reservationRepository.verify_2(produit_id, date);
+    }
+
+    public List<Reservation> findByClientId(int id) {
+        return reservationRepository.findByClientId(id);
     }
 
 }
