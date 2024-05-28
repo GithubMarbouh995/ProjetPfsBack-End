@@ -3,10 +3,13 @@ import com.marbouh.locationdevetementstraditionnels.dto.UtilisateurDto;
 import com.marbouh.locationdevetementstraditionnels.exception.ErrorCodes;
 import com.marbouh.locationdevetementstraditionnels.exception.InvalidEntityException;
 import com.marbouh.locationdevetementstraditionnels.exception.InvalidOperationException;
+import com.marbouh.locationdevetementstraditionnels.model.Role;
 import com.marbouh.locationdevetementstraditionnels.model.Utilisateur;
 import com.marbouh.locationdevetementstraditionnels.repository.UtilisateurRepository;
 import com.marbouh.locationdevetementstraditionnels.services.UtilisateurService;
+import com.marbouh.locationdevetementstraditionnels.token.TokenRepository;
 import com.marbouh.locationdevetementstraditionnels.validator.UtilisateurValidator;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,7 +27,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     private UtilisateurRepository utilisateurRepository;
     private PasswordEncoder passwordEncoder;
 
-
+    @Autowired
+    private TokenRepository tokenRepository;
     @Autowired
     public UtilisateurServiceImpl(UtilisateurRepository utilisateurRepository,
                                   PasswordEncoder passwordEncoder) {
@@ -115,7 +119,18 @@ if (id == null) {
         }
         return utilisateurRepository.save(utilisateur);
     }
-
-
+     //Supprime ce bout de code
+        public void changeRoleToSeller(Utilisateur user) {
+            user.setRole(Role.MANAGER);
+            utilisateurRepository.save(user);
+        }
+    @Transactional
+    public void deleteById(int id) {
+        tokenRepository.deleteByUserId(id);
+        utilisateurRepository.deleteById(id);
+    }
+ public List<Utilisateur> getAllClient(){
+        return utilisateurRepository.getAllClient();
+    }
 
 }

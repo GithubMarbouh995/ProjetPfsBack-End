@@ -1,5 +1,8 @@
 package com.marbouh.locationdevetementstraditionnels.token;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.marbouh.locationdevetementstraditionnels.model.Utilisateur;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

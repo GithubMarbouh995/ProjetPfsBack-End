@@ -60,4 +60,13 @@ public Reservation findById(int id) {
         return reservationRepository.findByClientId(id);
     }
 
+    public List<Reservation> findByClient(int id) {
+        return reservationRepository.findByClient(id);
+    }
+    public List<Reservation> findNotAccepted(int id) {
+        return reservationRepository.findNotAccepted(id);
+    }
+    public Reservation update(Reservation reservation) {
+        return reservationRepository.saveAndFlush(reservation);
+    }
 }

@@ -1,5 +1,6 @@
 package com.marbouh.locationdevetementstraditionnels.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -20,10 +21,7 @@ import java.util.List;
 @Table(name = "utilisateur")
 @DiscriminatorColumn(name = "type_utilisateur")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id"
-)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Utilisateur extends AbstractEntity implements UserDetails {
     @Column(name = "nom")
     private String nom;

@@ -33,8 +33,8 @@ public class ReservationController {
     }
 
     @PutMapping("/reservation/update")
-    void updateLocation(@RequestBody Reservation reservation) {
-        reservationService.saveOrUpdate(reservation);
+    Reservation update(@RequestBody Reservation reservation) {
+        return reservationService.update(reservation);
     }
 
     @DeleteMapping("/reservation/delete/{id}")
@@ -58,6 +58,11 @@ public class ReservationController {
     }
     @GetMapping("/reservation/client/{id}")
     List<Reservation> findByClientId(@PathVariable("id") int id) {
-        return reservationService.findByClientId(id);
+        return reservationService.findByClient(id);
     }
+    @GetMapping("/reservation/attente/{id}")
+    List<Reservation> findNotAccepted(@PathVariable("id") int id) {
+        return reservationService.findNotAccepted(id);
+    }
+
 }

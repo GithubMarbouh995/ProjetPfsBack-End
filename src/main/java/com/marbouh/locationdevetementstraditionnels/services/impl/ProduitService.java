@@ -3,6 +3,7 @@ import com.marbouh.locationdevetementstraditionnels.model.CreneauDisponibilite;
 import com.marbouh.locationdevetementstraditionnels.model.Produit;
 import com.marbouh.locationdevetementstraditionnels.repository.CreneauDisponibiliteDAO;
 import com.marbouh.locationdevetementstraditionnels.repository.ProduitDAO;
+import com.marbouh.locationdevetementstraditionnels.repository.ProduitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,8 @@ public class ProduitService {
     private ProduitDAO produitDAO;
     @Autowired
     private CreneauDisponibiliteDAO creneauDisponibiliteDAO;
+    @Autowired
+    private ProduitRepository produitRepository;
 
     public Produit ajouterProduit(Produit produit){
         produit.setCreationDate(Instant.now());
@@ -28,13 +31,8 @@ public class ProduitService {
     public void supprimerProduit(Integer id_produit) {
         produitDAO.deleteById(id_produit);
     }
-    public Produit updateProduit(Integer ProduitId,Produit produit) {
-           Optional<Produit> ProduitExistant = produitDAO.findById(ProduitId);
-           Produit Produit = ProduitExistant.get();
-           Produit.setNom(produit.getNom());
-           Produit.setDescription(produit.getDescription());
-           Produit.setCategorie(produit.getCategorie());
-           return produitDAO.save(Produit);
+    public Produit updateProduit(Produit produit) {
+        return produitRepository.saveAndFlush(produit);
     }
     public Set<Produit> getProduitsDispoPourCreneau(Integer id_creneau) {
         CreneauDisponibilite creneauDisponibilite = creneauDisponibiliteDAO.findById(id_creneau).get();

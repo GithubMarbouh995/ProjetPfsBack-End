@@ -3,6 +3,7 @@ package com.marbouh.locationdevetementstraditionnels.controller;
 import com.marbouh.locationdevetementstraditionnels.model.Boutique;
 import com.marbouh.locationdevetementstraditionnels.model.Image;
 import com.marbouh.locationdevetementstraditionnels.model.Produit;
+import com.marbouh.locationdevetementstraditionnels.model.Utilisateur;
 import com.marbouh.locationdevetementstraditionnels.services.impl.BoutiqueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -37,20 +38,27 @@ public class BoutiqueController {
     }
 
     @PostMapping(value={"/createBoutique"},consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    void createBoutique(@RequestPart("boutique") Boutique boutique,@RequestPart("image_boutique") MultipartFile[] files ) {
+    void createBoutique(@RequestPart("boutique") Boutique boutique, @RequestPart("vendeur")Utilisateur user, @RequestPart("image_boutique") MultipartFile[] files ) {
         try {
             Set<Image> images = uploadImage(files);
             boutique.setImages(images);
             boutique.setId(0);
-            boutiqueService.saveOrUpdate(boutique);
+            boutiqueService.saveOrUpdate(boutique, user);
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
     }
 
     @PutMapping("/update")
-    void updateBoutique(@RequestBody Boutique boutique) {
-        boutiqueService.saveOrUpdate(boutique);
+    Boutique updateBoutique(@RequestPart("boutique") Boutique boutique , @RequestPart("image_boutique") MultipartFile[] files) {
+        try {
+            Set<Image> images = uploadImage(files);
+            boutique.setImages(images);
+            return boutiqueService.update(boutique);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
     @PostMapping("/delete")
@@ -72,5 +80,13 @@ public class BoutiqueController {
         return images;
     }
 
+    @GetMapping("/vendeur/{id}")
+    Boutique getBoutiqueByVendeur(@PathVariable("id") int id) {
+        return boutiqueService.getBoutiqueByClient(id);
+    }
 
+    @GetMapping("/vendeur/email")
+    Integer getBoutiqueIdByVendeurEmail(@RequestParam("email") String email) {
+        return boutiqueService.getBoutiqueIdByVendeurEmail(email);
+    }
 }

@@ -1,6 +1,8 @@
 package com.marbouh.locationdevetementstraditionnels.token;
 
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
@@ -16,4 +18,7 @@ public interface TokenRepository extends JpaRepository<Token, Integer> {
   List<Token> findAllValidTokenByUser(Integer id);
 
   Optional<Token> findByToken(String token);
+  @Modifying
+  @Query("DELETE FROM Token t WHERE t.user.id = :userId")
+  void deleteByUserId(Integer userId);
 }

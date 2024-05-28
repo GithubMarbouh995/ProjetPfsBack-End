@@ -50,5 +50,11 @@ public class LocationService {
     public List<Location> findByClientId(int id) {
         return locationRepository.findByClientId(id);
     }
+    public List<Location> findNotAccepted(int id) {
+        return locationRepository.findNotAccepted(id);
+    }
+    public Location update(Location location) {
+        return locationRepository.saveAndFlush(location);
+    }
 }
 

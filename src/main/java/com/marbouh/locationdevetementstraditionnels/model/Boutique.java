@@ -38,8 +38,8 @@ public class Boutique extends AbstractEntity {
     private String siteweb;
     private String horaire;
     @OneToOne
-    @JoinColumn(name = "id")
-    private Vendeur vendeur;
+    @JoinColumn(name = "vendeur_id", referencedColumnName = "id")
+    private Utilisateur vendeur;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_boutique")
     private List<Produit> produits;
@@ -49,7 +49,7 @@ public class Boutique extends AbstractEntity {
   public Boutique() {
     }
 
-    public Boutique(String nom, String adresse, String telephone, String email, String siteweb, String horaire, Vendeur vendeur) {
+    public Boutique(String nom, String adresse, String telephone, String email, String siteweb, String horaire, Utilisateur vendeur) {
         this.nom = nom;
         this.adresse = adresse;
         this.telephone = telephone;

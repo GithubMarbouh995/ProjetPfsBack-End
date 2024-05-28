@@ -1,4 +1,7 @@
 package com.marbouh.locationdevetementstraditionnels.model;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.marbouh.locationdevetementstraditionnels.model.Produit;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,7 +10,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
-
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,13 +22,13 @@ public class Reservation extends AbstractEntity{
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Produit produit;
     private boolean accepted;
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    private Client client;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Utilisateur client;
     @ManyToOne(cascade = CascadeType.ALL)
     private CreneauEssayage creneauEssayage;
 
 
-    public Reservation(Instant date, Produit produit, Client client, boolean accepted) {
+    public Reservation(Instant date, Produit produit, Utilisateur client, boolean accepted) {
         this.date = date;
         this.produit=produit;
         this.accepted = accepted;
@@ -41,11 +43,11 @@ public class Reservation extends AbstractEntity{
         this.date = date;
     }
 
-    public Client getClient() {
+    public Utilisateur getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
+    public void setClient(Utilisateur client) {
         this.client = client;
     }
 

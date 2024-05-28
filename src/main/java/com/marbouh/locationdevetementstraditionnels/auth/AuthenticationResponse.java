@@ -1,6 +1,7 @@
 package com.marbouh.locationdevetementstraditionnels.auth;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.marbouh.locationdevetementstraditionnels.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,4 +17,6 @@ public class AuthenticationResponse {
   private String accessToken;
   @JsonProperty("refresh_token")
   private String refreshToken;
+  @JsonProperty("Role")
+  private String role;
 }

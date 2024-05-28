@@ -33,7 +33,7 @@ public class Produit extends AbstractEntity {
     @JsonIgnore
     private Set<CreneauDisponibilite> creneauDisponibilites;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "produit")
-    private List<Location> locations= new ArrayList<>();
+    private List<Location> locations;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "produit")
     private List<Reservation> reservation;
 

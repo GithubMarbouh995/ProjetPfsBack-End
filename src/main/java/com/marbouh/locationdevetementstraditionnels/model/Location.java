@@ -1,12 +1,13 @@
 package com.marbouh.locationdevetementstraditionnels.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.marbouh.locationdevetementstraditionnels.model.Produit;
 import com.marbouh.locationdevetementstraditionnels.model.Client;
 import jakarta.persistence.*;
 
 import java.time.Instant;
-
 @Entity
 @Table(name = "location")
 public class Location extends AbstractEntity {
@@ -15,8 +16,8 @@ public class Location extends AbstractEntity {
     private boolean accepted;;
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Produit produit;
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    private Client client;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Utilisateur client;
 
 
 //    @Id
@@ -55,11 +56,11 @@ public class Location extends AbstractEntity {
         this.accepted = accepted;
     }
 
-    public Client getClient() {
+    public Utilisateur getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
+    public void setClient(Utilisateur client) {
         this.client = client;
     }
 

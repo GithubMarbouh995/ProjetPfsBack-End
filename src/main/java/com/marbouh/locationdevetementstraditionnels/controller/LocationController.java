@@ -37,13 +37,8 @@ public class LocationController {
 
     }
 
-    @PutMapping("/location/update")
-    void updateLocation(@RequestBody Location location) {
-        locationService.saveOrUpdate(location);
-    }
-
-    @PostMapping("/location/delete")
-    void delete(@RequestParam("id") int id) {
+    @DeleteMapping("/location/delete/{id}")
+    void delete(@PathVariable("id") int id) {
         locationService.deleteById(id);
     }
 
@@ -64,4 +59,20 @@ public class LocationController {
     List<Location> findByClientId(@PathVariable("id") int id) {
         return locationService.findByClientId(id);
     }
+
+    @GetMapping("/location/attente/{id}")
+    List<Location> findNotAccepted(@PathVariable("id") int id) {
+        return locationService.findNotAccepted(id);
+    }
+    @PutMapping("/location/update")
+    Location updateLocation1(@RequestBody Location location) {
+        Location existingLocation = locationService.findById(location.getId());
+        if (existingLocation != null) {
+            existingLocation.setAccepted(true);
+            return locationService.update(existingLocation);
+        } else {
+            return null;
+        }
+    }
+
 }

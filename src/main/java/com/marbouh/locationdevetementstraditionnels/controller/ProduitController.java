@@ -59,9 +59,17 @@ public class ProduitController {
             produitService.supprimerProduit(ProduitId);
     }
 
-    @PutMapping({"/updateProduit/{ProduitId}"})
-    public Produit updateProduit(@PathVariable("ProduitId") Integer ProduitId, @RequestBody Produit produit) {
-              return produitService.updateProduit(ProduitId,produit);
+    @PutMapping({"/updateProduit"})
+    public Produit updateProduit(@RequestPart("produit") Produit produit, @RequestPart("image_produit")MultipartFile[] files ) {
+        try {
+            Set<Image> images = uploadImage(files);
+            produit.setImages(images);
+            return produitService.updateProduit(produit);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+
     }
 
     public Set<Image> uploadImage(MultipartFile[] multipartFiles) throws IOException {
