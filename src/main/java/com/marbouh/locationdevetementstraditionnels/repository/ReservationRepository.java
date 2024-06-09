@@ -27,5 +27,9 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
     List<Reservation> findByClient(int id);
     @Query("SELECT r FROM Reservation r WHERE r.accepted = false AND r.produit.id_boutique= :id")
     List<Reservation> findNotAccepted(int id);
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM Reservation r WHERE r.client.id = :id")
+    void deleteByClientId(int id);
 
 }

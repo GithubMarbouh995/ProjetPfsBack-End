@@ -16,7 +16,7 @@ public class Location extends AbstractEntity {
     private boolean accepted;;
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Produit produit;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Utilisateur client;
 
 

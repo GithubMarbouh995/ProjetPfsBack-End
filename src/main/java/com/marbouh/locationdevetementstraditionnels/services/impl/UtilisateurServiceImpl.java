@@ -5,6 +5,8 @@ import com.marbouh.locationdevetementstraditionnels.exception.InvalidEntityExcep
 import com.marbouh.locationdevetementstraditionnels.exception.InvalidOperationException;
 import com.marbouh.locationdevetementstraditionnels.model.Role;
 import com.marbouh.locationdevetementstraditionnels.model.Utilisateur;
+import com.marbouh.locationdevetementstraditionnels.repository.LocationRepository;
+import com.marbouh.locationdevetementstraditionnels.repository.ReservationRepository;
 import com.marbouh.locationdevetementstraditionnels.repository.UtilisateurRepository;
 import com.marbouh.locationdevetementstraditionnels.services.UtilisateurService;
 import com.marbouh.locationdevetementstraditionnels.token.TokenRepository;
@@ -29,6 +31,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     @Autowired
     private TokenRepository tokenRepository;
+    @Autowired
+    private LocationRepository locationRepository;
+    @Autowired
+    private ReservationRepository reservationRepository;
+
     @Autowired
     public UtilisateurServiceImpl(UtilisateurRepository utilisateurRepository,
                                   PasswordEncoder passwordEncoder) {
@@ -127,6 +134,8 @@ if (id == null) {
     @Transactional
     public void deleteById(int id) {
         tokenRepository.deleteByUserId(id);
+        locationRepository.deleteByClientId(id);
+        reservationRepository.deleteByClientId(id);
         utilisateurRepository.deleteById(id);
     }
  public List<Utilisateur> getAllClient(){

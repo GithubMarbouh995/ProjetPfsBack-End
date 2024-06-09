@@ -18,12 +18,12 @@ import java.util.List;
 public class Client extends Utilisateur {
     private boolean blacklistee;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy = "client",orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy = "client")
     private List<Location> locations;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy = "client",orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy = "client")
     private List<Reservation> reservation;
 
-    @OneToMany(mappedBy = "client",orphanRemoval = true)
+    @OneToMany(mappedBy = "client")
     private List<Avis> avis;
 
     public List<Location> getLocations() {

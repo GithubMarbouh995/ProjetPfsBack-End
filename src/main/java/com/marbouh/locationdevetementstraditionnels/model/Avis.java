@@ -9,23 +9,18 @@ import lombok.Data;
 public class Avis  extends AbstractEntity {
 
     private int note;
-
     private String commentaire;
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-//    @Column(name = "id_avis")
+    //    @Column(name = "id_avis")
 //
 //    private Long id;
-    @ManyToOne(cascade = {CascadeType.ALL})
-
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "id_client")
-
-    private Client client;
-//    @ManyToOne(cascade ={CascadeType.PERSIST})
-    @ManyToOne(cascade = {})
+    private Utilisateur client;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "boutique_id")
-
     private Boutique boutique;
 
 //    public Client getClient() {

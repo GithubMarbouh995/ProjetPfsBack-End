@@ -22,7 +22,7 @@ public class Reservation extends AbstractEntity{
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Produit produit;
     private boolean accepted;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Utilisateur client;
     @ManyToOne(cascade = CascadeType.ALL)
     private CreneauEssayage creneauEssayage;

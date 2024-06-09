@@ -26,4 +26,9 @@ public interface LocationRepository extends JpaRepository<Location,Integer> {
         void deleteById(int id);
         @Query("SELECT l FROM Location l WHERE l.accepted = false AND l.produit.id_boutique= :id")
         List<Location> findNotAccepted(int id);
+        @Transactional
+        @Modifying
+        @Query("DELETE FROM Location l WHERE l.client.id = :id")
+        void deleteByClientId(int id);
+
 }

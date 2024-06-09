@@ -3,6 +3,7 @@ package com.marbouh.locationdevetementstraditionnels.services.impl;
 import com.marbouh.locationdevetementstraditionnels.model.Avis;
 import com.marbouh.locationdevetementstraditionnels.model.Boutique;
 import com.marbouh.locationdevetementstraditionnels.repository.AvisRepository;
+import com.marbouh.locationdevetementstraditionnels.services.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.Optional;
 public class AvisService {
     AvisRepository avisRepository;
     BoutiqueService boutiqueService;
+    UtilisateurService utilisateurService;
 
     @Autowired
     public AvisService(AvisRepository avisRepository, BoutiqueService boutiqueService) {
@@ -31,31 +33,36 @@ public class AvisService {
         return avis.orElse(null);
     }
 
-    public void save(Avis avis, Boutique boutique) {
-        try {
-
-            if (boutique != null) {
-                List<Avis> BoutiqueAvisList = boutique.getAvis();
-                if (!BoutiqueAvisList.contains(avis)) {
-                    BoutiqueAvisList.add(avis);
-                    avis.setBoutique(boutique);
-                    boutique.setAvis(BoutiqueAvisList);
-                    avis.setBoutique(boutique);
-                    avisRepository.save(avis);
-                }
-
-            } else System.out.println("Wa chriif ra la boutique makinach asslan");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-            //Client client = boutiqueService.findById(avis.getBoutique().getId().intValue());
-//avis.getClient().getAvis().add(avis);
-
-        }
+    //    public void save(Avis avis) {
+//        try {
+//
+//            if (boutique != null) {
+//                List<Avis> BoutiqueAvisList = boutique.getAvis();
+//                if (!BoutiqueAvisList.contains(avis)) {
+//                    BoutiqueAvisList.add(avis);
+//                    avis.setBoutique(boutique);
+//                    boutique.setAvis(BoutiqueAvisList);
+//                    avis.setBoutique(boutique);
+//                    avisRepository.save(avis);
+//                }
+//
+//            } else System.out.println("Wa chriif ra la boutique makinach asslan");
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//
+//            //Client client = boutiqueService.findById(avis.getBoutique().getId().intValue());
+////avis.getClient().getAvis().add(avis);
+//
+//        }
+//    }
+    public Avis save(Avis avis) {
+        return avisRepository.save(avis);
     }
 
-    public void update(Integer id) {
+
+
+    public void update (Integer id){
 
         try {
             if (id == null) {
@@ -78,7 +85,7 @@ public class AvisService {
 //
 //    }
 
-    public void delete(Avis avis, Boutique boutique) {
+    public void delete (Avis avis, Boutique boutique){
 
         try {
 
@@ -106,4 +113,3 @@ public class AvisService {
     }
 
 }
-
