@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/test?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&spring.datasource.url=jdbc:mysql://localhost:3306/mydb?useSSL=false&allowPublicKeyRetrieval=true
-    username: root
-    password: 03112002Ayoub
+    username: anwar
+    password: anwar
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database: MYSQL
